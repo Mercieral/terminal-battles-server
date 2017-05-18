@@ -19,7 +19,7 @@ net.createServer(function (socket) {
 			var hostName = dataString.split(",")[1];
 			//console.log("host connected, name='" + hostName + "', ip='" + socket.remoteAddress.replace(/^.*:/, '') + "'");
 			hostSockets.push(socket);
-			hostInfo.push(hostName+";"+ socket.remoteAddress);
+			hostInfo.push(hostName+";"+ socket.remoteAddress.replace(/^.*:/, ''));
 			//console.log(socket);
 		} else if (clientPatt.test(dataString)) {
 			//Client intiating connection
