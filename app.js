@@ -5,7 +5,7 @@ var hostInfo = [];
 
 net.createServer(function (socket) {
 
-	socket.name = socket.localAddress + ":" + socket.localPort;
+	socket.name = socket.remoteAddress + ":" + socket.remotePort;
 
 	// Handle incoming messages from clients.
 	socket.on('data', function (data) {
@@ -19,8 +19,8 @@ net.createServer(function (socket) {
 			var hostName = dataString.split(",")[1];
 			//console.log("host connected, name='" + hostName + "', ip='" + socket.remoteAddress.replace(/^.*:/, '') + "'");
 			hostSockets.push(socket);
-			hostInfo.push(hostName+";"+ socket.localAddress.replace(/^.*:/, ''));
-			//console.log(socket.name);
+			hostInfo.push(hostName+";"+ socket.remoteAddress.replace(/^.*:/, ''));
+			//console.log(socket);
 		} else if (clientPatt.test(dataString)) {
 			//Client intiating connection
 			//console.log("client connected");
